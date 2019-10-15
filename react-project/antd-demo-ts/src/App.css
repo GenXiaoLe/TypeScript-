@@ -4,12 +4,26 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.sider__logo--small {
+  height: 4vmin;
+}
+
+.sider__logo {
+  background-color: #2889c2;
+}
+
+.header {
+  background-color: #fff;
+}
+
+.content {
+  background-color: #eee;
+  height: 300px;
+  line-height: 300px;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #2889c2;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
