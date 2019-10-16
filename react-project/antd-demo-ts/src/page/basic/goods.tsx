@@ -4,7 +4,7 @@ export default class Goods extends React.Component {
     render() {
         return(
             <section>
-                goods
+                Welcome to the Tornadoes goods!
             </section>
         );
     }

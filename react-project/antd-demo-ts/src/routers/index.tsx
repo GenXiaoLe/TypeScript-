@@ -1,19 +1,16 @@
-import React, { Component } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import * as React from 'react';
+import { Route, Switch, HashRouter } from 'react-router-dom';
 
-import Home from '../page/home/index';
-import Goods from '../page/basic/goods';
 import App from '../App';
+import Login from '../page/login/index';
 
-
-export default class RouteConfig extends Component {
-    render() {
-        return(
+export default class RouteConfig extends React.Component {
+    render(){
+        return (
             <HashRouter>
                 <Switch>
-                    <Route exact path="/" components={App} />
-                    {/* <Route exact path="/home"  components={Home} />
-                    <Route exact path="/goods"  components={Goods} /> */}
+                    <Route exact path="/" component={Login} />
+                    <Route path="/layout" component={App} />
                 </Switch>
             </HashRouter>
         )

@@ -1,0 +1,13 @@
+.header__title {
+    background-color: #fff;
+    text-align: center;
+}
+
+.login__input {
+    margin: 20px 0;
+}
+
+.login__button {
+    margin: 20px auto;
+    display: block;
+}
