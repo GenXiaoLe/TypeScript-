@@ -1,15 +1,12 @@
 @import '~antd/dist/antd.css';
 
-.App {
-  text-align: center;
-}
-
 .sider__logo--small {
   height: 4vmin;
 }
 
 .sider__logo {
   background-color: #2889c2;
+  text-align: center;
 }
 
 .header {

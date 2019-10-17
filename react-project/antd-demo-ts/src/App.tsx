@@ -4,7 +4,7 @@ import { Layout, Row, Col, Menu, Icon } from 'antd';
 import { Route, Switch, Link } from 'react-router-dom';
 import './App.css';
 import MainRoute from './page/main';
-import { Home } from './page/home/index';
+import Home from './page/home/index';
 import Goods from './page/basic/goods';
 
 const { SubMenu } = Menu;
@@ -40,7 +40,7 @@ class App extends React.Component {
                   <SubMenu
                     key="2"
                     title={<span>
-                      <Icon type="user" />
+                      <Icon type="laptop" />
                       subnav 2
                     </span>}>
                     <Menu.Item key="5">option1</Menu.Item>
