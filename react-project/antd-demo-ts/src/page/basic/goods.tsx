@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout, Row, Col, Menu, Icon } from 'antd';
 
 import LHeader from '../../component/header/lHeader.tsx';
+import Tree from '../../component/tree/tree';
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
 
@@ -71,26 +72,15 @@ export default class Goods extends React.Component<Props, State> {
                 <Content>
                     <Row>
                         <Col span={4}>
-                            <Menu
-                                mode="inline"
-                                defaultSelectedKeys={['1']}
-                                defaultOpenKeys={['sub1']}
-                                style={{ height: '100%', borderRight: 0 }}>
-                                <Menu.Item key="1">全部</Menu.Item>
-                                <SubMenu
-                                    key="2"
-                                    title={<span>
-                                    <Icon type="laptop" />
-                                    有下级的货品
-                                    </span>}>
-                                    <Menu.Item key="5">货品1</Menu.Item>
-                                    <Menu.Item key="6">货品2</Menu.Item>
-                                    <Menu.Item key="7">货品3</Menu.Item>
-                                    <Menu.Item key="8">货品4</Menu.Item>
-                                </SubMenu>
-                            </Menu>
+                            <Tree data={[
+                                {id: 1, name: '有下级的货品', parent_id: 0, icon: 'laptop'},
+                                {id: 2, name: '货品1', parent_id: 1},
+                                {id: 3, name: '货品2', parent_id: 1},
+                                {id: 4, name: '货品3', parent_id: 1},
+                            ]}/>
                         </Col>
                         <Col span={20}>
+                            table
                         </Col>
                     </Row>
                 </Content>
