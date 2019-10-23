@@ -16,7 +16,7 @@ class App extends React.Component {
     return (
       <section className="App">
         <Row style={{height: '100%'}}>
-          <Col span={4}>
+          <Col span={4} className="sider">
             <Layout>
               <Header className="sider__logo">
                 <img src={logo} className="sider__logo--small" alt="logo" />

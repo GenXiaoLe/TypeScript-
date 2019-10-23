@@ -1,8 +1,12 @@
 import React from 'react';
-import { Layout, Row, Col, Menu, Icon } from 'antd';
+import { Layout, Row, Col, Menu, Icon, Table, Divider, Tag } from 'antd';
+
+import { goods } from '../../component/tableTh/base';
 
 import LHeader from '../../component/header/lHeader.tsx';
 import Tree from '../../component/tree/tree';
+
+import './index.css';
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
 
@@ -22,6 +26,7 @@ export interface Props {
 
 export interface State {
     data: Array<object>
+    tableTh: Array<object>
 }
 
 export default class Goods extends React.Component<Props, State> {
@@ -29,7 +34,21 @@ export default class Goods extends React.Component<Props, State> {
         super(props);
 
         this.state = {
-            data: []
+            data: [],
+            tableTh: [
+                {
+                    key: 1,
+                    goodSerial: '001',
+                    goodName: 'jack',
+                    unit: 'kg'
+                },
+                {
+                    key: 2,
+                    goodSerial: '002',
+                    goodName: 'rose',
+                    unit: 'kg'
+                }
+            ]
         }
 
         this.btnChange = this.btnChange.bind(this);
@@ -60,30 +79,28 @@ export default class Goods extends React.Component<Props, State> {
     render() {
         return(
             <section>
-                <Header>
-                    <LHeader btnChange={this.btnChange} btns={['导出', '导入']} />
-                </Header>
-                {/* <Content>
-                    <Sider>
-                    </Sider>
+                <Layout>
+                    <Header className="t-header">
+                        <LHeader btnChange={this.btnChange} btns={['导出', '导入']} />
+                    </Header>
                     <Content>
+                        <Row>
+                            <Col span={4} className="goods-sider">
+                                <Tree data={[
+                                    {id: 1, name: '有下级的货品', parent_id: 0, icon: 'laptop'},
+                                    {id: 2, name: '货品1', parent_id: 1},
+                                    {id: 3, name: '货品2', parent_id: 1},
+                                    {id: 4, name: '货品3', parent_id: 1},
+                                ]}/>
+                            </Col>
+                            <Col span={20} className="goods-table">
+                                <Table
+                                columns={goods}
+                                dataSource={this.state.tableTh}></Table>
+                            </Col>
+                        </Row>
                     </Content>
-                </Content> */}
-                <Content>
-                    <Row>
-                        <Col span={4}>
-                            <Tree data={[
-                                {id: 1, name: '有下级的货品', parent_id: 0, icon: 'laptop'},
-                                {id: 2, name: '货品1', parent_id: 1},
-                                {id: 3, name: '货品2', parent_id: 1},
-                                {id: 4, name: '货品3', parent_id: 1},
-                            ]}/>
-                        </Col>
-                        <Col span={20}>
-                            table
-                        </Col>
-                    </Row>
-                </Content>
+                </Layout>
             </section>
         );
     }

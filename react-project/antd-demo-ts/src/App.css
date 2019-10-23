@@ -2,6 +2,17 @@
 
 .App {
   background: #fafafa;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.sider {
+  height: 100%;
+  background: #323c57;
 }
 
 .sider__logo--small {
@@ -11,14 +22,18 @@
 .sider__logo {
   background-color: #2889c2;
   text-align: center;
+  height: 44px;
+  line-height: 44px;
 }
 
 .header {
   background-color: #fff;
+  height: 44px;
+  line-height: 44px;
 }
 
 .content {
-  background-color: #eee;
+  background: #cfdae7;
   height: 500px;
   line-height: 500px;
 }
