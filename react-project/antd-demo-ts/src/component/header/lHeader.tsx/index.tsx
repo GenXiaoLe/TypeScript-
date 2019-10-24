@@ -22,7 +22,6 @@ export default class LHeader extends React.Component<Props>{
         this.state = {
             btns: this.props.btns
         };
-
     }
 
     render() {
