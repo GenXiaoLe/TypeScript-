@@ -1,12 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
-import { Layout, Row, Col, Menu, Icon } from 'antd';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Layout, Row, Col, Menu } from 'antd';
 import './App.css';
-import MainRoute from './page/main';
-import Home from './page/home/index';
-import Goods from './page/basic/goods';
-import Tree from './component/tree/tree';
+import Tree from './component/tree/menuTree';
+import Nav from './component/nav';
+import RouteMain from './routers/main';
 
 const { SubMenu } = Menu;
 const { Sider, Header, Content, Footer } = Layout;
@@ -16,7 +14,7 @@ class App extends React.Component {
     return (
       <section className="App">
         <Row style={{height: '100%'}}>
-          <Col span={4} className="sider">
+          <Col span={3} className="sider">
             <Layout>
               <Header className="sider__logo">
                 <img src={logo} className="sider__logo--small" alt="logo" />
@@ -34,10 +32,10 @@ class App extends React.Component {
               </Content>
             </Layout>
           </Col>
-          <Col span={20}>
+          <Col span={21} className="content">
             <Layout>
-              <Header className="header">
-                <Row>
+              <Header className="content__header">
+                <Row className="content__header-title">
                   <Col span={8}>
                     <span>JXC企业</span>
                   </Col>
@@ -45,12 +43,12 @@ class App extends React.Component {
                     <span>设置中心</span>
                   </Col>
                 </Row>
+                <Row className="content__header-nav">
+                  <Nav />
+                </Row>
               </Header>
-              <Content className="content">
-                <Switch>
-                    <Route path="/layout/home" component={Home}/>
-                    <Route path="/layout/goods" component={Goods}/>
-                </Switch>
+              <Content className="content__body">
+                <RouteMain />
               </Content>
             </Layout>
           </Col>

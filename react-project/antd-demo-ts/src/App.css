@@ -26,16 +26,28 @@
   line-height: 44px;
 }
 
-.header {
+.content__header {
   background-color: #fff;
-  height: 44px;
-  line-height: 44px;
+  padding: 0;
+  height: 68px;
 }
 
-.content {
-  background: #cfdae7;
-  height: 500px;
+.content__header-title {
+  height: 44px;
+  line-height: 44px;
+  padding: 0 20px;
+}
+
+.content__header-nav {
+  height: 24px;
+  line-height: 24px;
+}
+
+.content__body {
+  background: #f2f2f2;
+  min-height: 500px;
   line-height: 500px;
+  padding: 0 20px;
 }
 
 .App-header {

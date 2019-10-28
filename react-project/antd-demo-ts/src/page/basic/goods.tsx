@@ -3,7 +3,8 @@ import { Layout, Row, Col, Menu, Icon, Table, Divider, Tag } from 'antd';
 
 import { goods } from '../../component/tableTh/base';
 
-import LHeader from '../../component/header/lHeader.tsx';
+import LHeader from '../../component/header/lHeader/index';
+import THeader from '../../component/header/tHeader/index';
 import Tree from '../../component/tree/tree';
 
 import './index.css';
@@ -27,6 +28,16 @@ export interface Props {
 export interface State {
     data: Array<object>
     tableTh: Array<object>
+}
+
+const rowSelection: object = {
+    onChange: (selectKey: number, selectItem: any) => {
+        console.log(selectKey, selectItem);
+    },
+    getCheckboxProps: (record: any) => ({
+        disabled: record.goodName === 'rose',
+        name: record.goodName
+    })
 }
 
 export default class Goods extends React.Component<Props, State> {
@@ -80,23 +91,32 @@ export default class Goods extends React.Component<Props, State> {
         return(
             <section>
                 <Layout>
-                    <Header className="t-header">
+                    <Header className="goods__header">
                         <LHeader btnChange={this.btnChange} btns={['导出', '导入']} />
                     </Header>
                     <Content>
                         <Row>
                             <Col span={4} className="goods-sider">
-                                <Tree data={[
-                                    {id: 1, name: '有下级的货品', parent_id: 0, icon: 'laptop'},
-                                    {id: 2, name: '货品1', parent_id: 1},
-                                    {id: 3, name: '货品2', parent_id: 1},
-                                    {id: 4, name: '货品3', parent_id: 1},
-                                ]}/>
+                                <Tree 
+                                    data={[
+                                        {id: 1, title: '有下级的货品', parent_id: 0},
+                                        {id: 2, title: '货品1', parent_id: 1},
+                                        {id: 3, title: '货品2', parent_id: 1},
+                                        {id: 4, title: '货品3', parent_id: 1},
+                                        {id: 5, title: '无下级的货品', parent_id: 0},
+                                        {id: 6, title: '货品1-1', parent_id: 2},
+                                        {id: 7, title: '货品1-1-1', parent_id: 6},
+                                        {id: 8, title: '货品1-2', parent_id: 2},
+
+                                    ]}
+                                    isListData={true}/>
                             </Col>
                             <Col span={20} className="goods-table">
+                                <THeader btnChange={this.btnChange} />
                                 <Table
-                                columns={goods}
-                                dataSource={this.state.tableTh}></Table>
+                                    rowSelection={rowSelection}
+                                    columns={goods}
+                                    dataSource={this.state.tableTh}></Table>
                             </Col>
                         </Row>
                     </Content>

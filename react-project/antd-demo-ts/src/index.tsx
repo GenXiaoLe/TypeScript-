@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Route from './routers/index';
+import RouteConfig from './routers/index';
 import * as serviceWorker from './serviceWorker';
+import { HashRouter } from 'react-router-dom';
 
-ReactDOM.render(<Route />, document.getElementById('root'));
+ReactDOM.render(
+    <HashRouter>
+        <RouteConfig />
+    </HashRouter>, document.getElementById('root'));
 
 serviceWorker.unregister();

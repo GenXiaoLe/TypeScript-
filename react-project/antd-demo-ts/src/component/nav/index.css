@@ -1,0 +1,17 @@
+.nav__item {
+    padding: 0 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.nav__item--selected {
+    background: #f2f2f2;
+}
+
+.nav__item-word {
+    color: #333;
+}
+
+.nav__content {
+    background: #accce4;
+}

@@ -7,12 +7,10 @@ import Login from '../page/login/index';
 export default class RouteConfig extends React.Component {
     render(){
         return (
-            <HashRouter>
-                <Switch>
-                    <Route exact path="/" component={Login} />
-                    <Route path="/layout" component={App} />
-                </Switch>
-            </HashRouter>
+            <Switch>
+                <Route exact path="/" component={Login} />
+                <Route path="/layout" component={App} />
+            </Switch>
         )
     }
 }

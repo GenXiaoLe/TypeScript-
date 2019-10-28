@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { Layout, Row, Col, Menu, Icon } from 'antd';
-
-import { Route, Switch, Link } from 'react-router-dom';
+import { Icon, Tree as AntTree } from 'antd';
 
 import './tree.css';
 
-const { SubMenu } = Menu;
+const { TreeNode } = AntTree;
 
 export interface Props {
     data: Array<any>
+    isListData: boolean
 }
 
 export interface State {
@@ -22,13 +21,13 @@ export default class Tree extends React.Component<Props, State> {
 
         this.state = {
             treeData: [],
-            loading: true
+            loading: true,
         }
 
         this.createTree = this.createTree.bind(this);
     }
 
-    createTree = (data: Array<any>, id: number = 0, attribute: string = 'parent_id'): Array<Object> => {
+    createTree = (data: Array<any>, id: number = 0, attribute: string = 'parent_id'): Array<any> => {
         return data
             .filter((item: any, index: number) => id === item[attribute])
             .map(item => {
@@ -36,31 +35,42 @@ export default class Tree extends React.Component<Props, State> {
             });
     }
 
+    renderTreeNodes = (data: Array<any>) => {
+        return data.map((item) => {
+            if (item.children) {
+                return (
+                    <TreeNode title={item.title} key={item.id} dataRef={item}>
+                        {this.renderTreeNodes(item.children)}
+                    </TreeNode>
+                )
+            }
+
+            return <TreeNode title={item.title} key={item.id} {...item}></TreeNode>
+        })
+    }
+    
+
     componentDidMount() {
-        const { data } = this.props;
+        const { data, isListData } = this.props;
+
+        const _tree: Array<any> =  isListData ? this.createTree(data) : data;
 
         this.setState({
-            treeData: [...this.state.treeData, ...this.createTree(data)],
+            treeData: [...this.state.treeData, ..._tree],
             loading: false
         })
     }
 
     render() {
         if (this.state.loading) return null;
+
+        const { treeData } = this.state
+        
         return(
             <section>
-                <Menu
-                mode="inline"
-                style={{ height: '100%', borderRight: 0 }}>
-                    {this.state.treeData.map((item, index) => {
-                        return <SubMenu
-                            key={ item.id }
-                            title={<span><Icon type={item.icon} />{item.name}</span>}>
-                                {item.children.length ? item.children.map((m: any) => {
-                                    return <Menu.Item key={ m.id }>{ m.link ? <Link to={m.link}>{m.name}</Link> : m.name}</Menu.Item>}) : null }
-                        </SubMenu>
-                    })}
-                </Menu>
+                <AntTree>
+                    {this.renderTreeNodes(treeData)}
+                </AntTree>
             </section>
         )
     }

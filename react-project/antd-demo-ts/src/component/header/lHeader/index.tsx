@@ -28,7 +28,7 @@ export default class LHeader extends React.Component<Props>{
         const { btns, btnChange } = this.props;
 
         return(
-            <section>
+            <section className="l-header__box">
                 <Button shape="round" className="l-header__btn-defalut" onClick={btnChange.bind(this, '保存')}>保存</Button>
                 <Button shape="round" className="l-header__btn-defalut" onClick={btnChange.bind(this, '取消')}>取消</Button>
                 {(btns || []).map((item, index) => (<Button key={index} shape="round" className="l-header__btn-defalut" onClick={btnChange.bind(this, item)}>{item}</Button>))}

@@ -3,7 +3,7 @@ import { Layout, Row, Col, Menu, Icon, Table, Divider, Tag } from 'antd';
 
 import { buyList, buy } from '../../component/tableTh/home';
 
-import LHeader from '../../component/header/lHeader.tsx';
+import LHeader from '../../component/header/lHeader';
 import Tree from '../../component/tree/tree';
 
 import './index.css';
