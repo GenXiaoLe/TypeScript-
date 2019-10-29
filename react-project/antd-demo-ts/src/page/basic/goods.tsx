@@ -5,7 +5,7 @@ import { goods } from '../../component/tableTh/base';
 
 import LHeader from '../../component/header/lHeader/index';
 import THeader from '../../component/header/tHeader/index';
-import Tree from '../../component/tree/tree';
+import Tree from '../../component/tree/searchTree';
 
 import './index.css';
 const { Header, Content, Sider } = Layout;
@@ -108,8 +108,7 @@ export default class Goods extends React.Component<Props, State> {
                                         {id: 7, title: '货品1-1-1', parent_id: 6},
                                         {id: 8, title: '货品1-2', parent_id: 2},
 
-                                    ]}
-                                    isListData={true}/>
+                                    ]}/>
                             </Col>
                             <Col span={20} className="goods-table">
                                 <THeader btnChange={this.btnChange} />

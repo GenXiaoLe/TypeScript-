@@ -1,0 +1,8 @@
+.search-tree__search-input input {
+    border: none;
+    border-radius: 0;
+}
+
+.search-tree__search-input {
+    padding: 5px;
+}

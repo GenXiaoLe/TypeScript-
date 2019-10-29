@@ -7,11 +7,10 @@ const { TreeNode } = AntTree;
 
 export interface Props {
     data: Array<any>
-    isListData: boolean
+    isListData?: boolean
 }
 
 export interface State {
-    treeData: Array<any>
     loading: boolean
 }
 
@@ -20,7 +19,6 @@ export default class Tree extends React.Component<Props, State> {
         super(props);
 
         this.state = {
-            treeData: [],
             loading: true,
         }
 
@@ -51,25 +49,26 @@ export default class Tree extends React.Component<Props, State> {
     
 
     componentDidMount() {
-        const { data, isListData } = this.props;
+        
 
-        const _tree: Array<any> =  isListData ? this.createTree(data) : data;
+        // const _tree: Array<any> =  isListData ? this.createTree(data) : data;
 
         this.setState({
-            treeData: [...this.state.treeData, ..._tree],
             loading: false
         })
     }
 
     render() {
-        if (this.state.loading) return null;
+        const { loading } = this.state;
+        const { data, isListData = true } = this.props;
 
-        const { treeData } = this.state
+        if (loading) return null;
+        const _tree: Array<any> =  isListData ? this.createTree(data) : data;
         
         return(
             <section>
                 <AntTree>
-                    {this.renderTreeNodes(treeData)}
+                    {this.renderTreeNodes(_tree)}
                 </AntTree>
             </section>
         )
