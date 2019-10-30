@@ -49,10 +49,6 @@ export default class Tree extends React.Component<Props, State> {
     
 
     componentDidMount() {
-        
-
-        // const _tree: Array<any> =  isListData ? this.createTree(data) : data;
-
         this.setState({
             loading: false
         })

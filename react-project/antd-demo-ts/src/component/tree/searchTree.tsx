@@ -36,17 +36,35 @@ export default class SearchTree extends React.Component<Props, State> {
         this.searchChange = this.searchChange.bind(this);
     }
 
-    searchTree = (data: Array<TreeData>, val: string): Array<TreeData> => {
-        return data.filter(i => i.title.includes(val));
+    searchData = (list: Array<TreeData>, data: TreeData, arr: Array<number>): Array<TreeData> => {
+        let treeArr: Array<TreeData> = [];
 
-        // return data.map(i => {
-            
-        // });
+        list.forEach((item) => {
+            if (item.id === data.parent_id && !arr.includes(item.id)) {
+                treeArr.push(item);
+                arr.push(item.id);
+                treeArr = [...treeArr, ...this.searchData(list, item, arr)]
+            }
+        });
+
+        return treeArr;
+    }
+
+    searchTree = (data: Array<TreeData>, val: string): Array<TreeData> => {
+        let treeArr: Array<TreeData> = data.filter(i => i.title.includes(val));
+        let treeIds: Array<number> = treeArr.map(i => i.id);
+        let searchList: Array<TreeData>  = [];
+
+        treeArr.forEach((item: TreeData) => {
+            searchList.push(...this.searchData(data, item, treeIds));
+        });
+
+        return [...treeArr, ...searchList];
     }
 
     searchChange = (event: any): void => {
         const _val: string = event.target.value;
-        const _treeData: Array<TreeData> = this.searchTree(this.state.treeData, _val);
+        const _treeData: Array<TreeData> = this.searchTree([...this.props.data], _val);
 
         this.setState({
             searchVal: event.target.value,
