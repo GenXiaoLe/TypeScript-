@@ -10,7 +10,7 @@ export default class RouteMain extends React.Component {
         return (
             <Switch>
                 <Route exact path="/layout" component={First}/>
-                <Route path="/layout/home" component={Home}/>
+                <Route path="/layout/payment" component={Home}/>
                 <Route path="/layout/goods" component={Goods}/>
             </Switch>
         )

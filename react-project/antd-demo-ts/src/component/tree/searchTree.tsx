@@ -14,7 +14,6 @@ export interface Props {
 export interface State {
     searchVal: string,
     treeData: Array<TreeData>
-    loading: boolean
 }
 
 export interface TreeData {
@@ -30,7 +29,6 @@ export default class SearchTree extends React.Component<Props, State> {
         this.state = {
             searchVal: '',
             treeData: [],
-            loading: true
         }
 
         this.searchChange = this.searchChange.bind(this);
@@ -74,16 +72,13 @@ export default class SearchTree extends React.Component<Props, State> {
 
     componentDidMount() {
         this.setState({
-            treeData: [...this.props.data],
-            loading: false
+            treeData: [...this.props.data]
         })
     }
 
     render() {
         const { placeholder = "请输入关键字" } = this.props; 
-        const { treeData, loading } = this.state;
-
-        if (loading) return null;
+        const { treeData } = this.state;
 
         return (
             <section>

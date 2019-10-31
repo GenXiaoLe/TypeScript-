@@ -11,16 +11,12 @@ export interface Props {
 }
 
 export interface State {
-    loading: boolean
+    
 }
 
 export default class Tree extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
-
-        this.state = {
-            loading: true,
-        }
 
         this.createTree = this.createTree.bind(this);
     }
@@ -46,19 +42,9 @@ export default class Tree extends React.Component<Props, State> {
             return <TreeNode title={item.title} key={item.id} {...item}></TreeNode>
         })
     }
-    
-
-    componentDidMount() {
-        this.setState({
-            loading: false
-        })
-    }
 
     render() {
-        const { loading } = this.state;
         const { data, isListData = true } = this.props;
-
-        if (loading) return null;
         const _tree: Array<any> =  isListData ? this.createTree(data) : data;
         
         return(

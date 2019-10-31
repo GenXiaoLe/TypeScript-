@@ -25,7 +25,7 @@ class App extends React.Component {
                   {id: 2, name: 'nav2', parent_id: 0, icon: 'laptop'},
                   {id: 3, name: 'nav1-1', parent_id: 1},
                   {id: 4, name: 'goods', parent_id: 1, link: '/layout/goods'},
-                  {id: 5, name: 'home', parent_id: 1, link: '/layout/home'},
+                  {id: 5, name: 'payment', parent_id: 1, link: '/layout/payment'},
                   {id: 6, name: 'nav2-1', parent_id: 2},
                   {id: 7, name: 'nav2-2', parent_id: 2},
                 ]} />

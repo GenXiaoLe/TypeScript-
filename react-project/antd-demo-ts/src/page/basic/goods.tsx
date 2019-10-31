@@ -10,6 +10,7 @@ import Tree from '../../component/tree/searchTree';
 import './index.css';
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
+const { Column, ColumnGroup } = Table;
 
 // export namespace Goods {
 //     export interface Props {
@@ -114,8 +115,13 @@ export default class Goods extends React.Component<Props, State> {
                                 <THeader btnChange={this.btnChange} />
                                 <Table
                                     rowSelection={rowSelection}
-                                    columns={goods}
-                                    dataSource={this.state.tableTh}></Table>
+                                    dataSource={this.state.tableTh}>
+                                    {
+                                        goods.map((item) => {
+                                            return <Column title={item.title} dataIndex={item.dataIndex} key={item.key} ></Column>
+                                        })
+                                    }
+                                </Table>
                             </Col>
                         </Row>
                     </Content>

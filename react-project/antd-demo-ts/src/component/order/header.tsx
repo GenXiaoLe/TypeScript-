@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+// import './index.scss';
+
 export interface Props {
 
 }
@@ -15,8 +17,8 @@ export default class OrderHeader extends React.Component<Props, State> {
 
     render() {
         return (
-            <section>
-                
+            <section className="page-header__outside">
+                1
             </section>
         )
     }
