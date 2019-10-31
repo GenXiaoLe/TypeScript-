@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Row, Col, Menu, Icon, Table, Divider, Tag } from 'antd';
+import { Layout, Row, Col, Menu, Icon, Table, Divider, Tag, Form } from 'antd';
 
 import { buyList, buy } from '../../component/tableTh/home';
 
@@ -48,10 +48,15 @@ export default class Home extends React.Component<Props, State>{
         };
 
         this.btnChange = this.btnChange.bind(this);
+        this.onSearch = this.onSearch.bind(this);
     }
 
     public btnChange = (name: string) => {
         console.log(name);
+    }
+
+    public onSearch = (val: any): void => {
+        console.log(val);
     }
 
     public render() {
@@ -63,7 +68,7 @@ export default class Home extends React.Component<Props, State>{
                     </Header>
                     <Content>
                         <Row>
-                            <OrderHeader></OrderHeader>
+                            <OrderHeader onSearch={this.onSearch}></OrderHeader>
                         </Row>
 
                         <Table
