@@ -1,15 +1,14 @@
 import React from 'react';
-import { Layout, Row, Col, Table, Divider, Input, Upload, Button, Icon } from 'antd';
+import { Layout, Row, Col, Table, Divider, Input, Button, Icon } from 'antd';
 
 import { buyList, buy } from '../../component/tableTh/home';
 
 import LHeader from '../../component/header/lHeader';
 import OrderHeader from '../../component/order/header';
+import Upload from '../../component/upload/uploads'
 
 
 import './index.css';
-import { Link } from 'react-router-dom';
-import { spawn } from 'child_process';
 const { Header, Content, Sider } = Layout;
 const { Column, ColumnGroup } = Table;
 
@@ -52,6 +51,10 @@ export default class Home extends React.Component<Props, State>{
         this.onSearch = this.onSearch.bind(this);
     }
 
+    public uploadChange = (data: any) => {
+        console.log(data);
+    }
+
     public btnChange = (name: string) => {
         console.log(name);
     }
@@ -82,21 +85,16 @@ export default class Home extends React.Component<Props, State>{
                 name: 'date2',
                 CNname: '预交日期',
             },
-            // {
-            //     name: 'attachmentList',
-            //     CNname: '附件',
-            //     rightRender: (data: any) => {
-            //         return <Upload
-            //             name="file"
-            //             action=''>
-            //             <Button>
-            //                 <Icon />
-            //                 上传附件
-            //             </Button>
-            //             支持常见的文件格式, 最大支持15M
-            //         </Upload>
-            //     }
-            // },
+            {
+                name: 'attachmentList',
+                CNname: '附件',
+                span: 24,
+                rightRender: (data: any) => {
+                    return <Upload
+                        action=""
+                        onChange={this.uploadChange}/>
+                }
+            },
         ]
 
         let dataSource = {

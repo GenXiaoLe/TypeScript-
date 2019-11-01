@@ -5,7 +5,11 @@ import { FormComponentProps } from 'antd/es/form';
 
 import './index.scss';
 
-/// FieldItem参数
+// FieldItem参数
+/**
+ * @name {string} 属性名
+ * @CNname {string} 属性中文名
+ **/
 interface FieldItem {
     name: string;
     CNname: string;
