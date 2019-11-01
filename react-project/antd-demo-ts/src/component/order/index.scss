@@ -3,3 +3,11 @@
     background: #fff;
     margin-bottom: 20px;
 }
+.page-header__form {
+    .ant-form-item {
+        display: flex;
+        .ant-form-item-control-wapper {
+            flex: 1;
+        }
+    }
+}

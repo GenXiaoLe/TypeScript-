@@ -2,7 +2,7 @@ export const goods = [
     {
         title: '编号',
         dataIndex: 'goodSerial',
-        key: 'serial'
+        key: 'serial',
     },
     {
         title: '名称',

@@ -5,24 +5,32 @@ import { FormComponentProps } from 'antd/es/form';
 
 import './index.scss';
 
+/// FieldItem参数
 interface FieldItem {
-    title: string,
+    name: string;
+    CNname: string;
+    isRequired?: boolean;
+    requiredText?: string;
+    span?: number;
+    rightRender?: ((data: any) => React.ReactNode);
 }
 
 interface UserFormProps extends FormComponentProps {
     onSearch: (val: any) => void;
-    // field: Array<FieldItem>;
+    field: Array<FieldItem>;
     form: WrappedFormUtils;
+    count?: number
+    dataSource?: any
 }
 
-export interface State {
+interface UserFormState {
     expand: boolean
 }
 
-export class OrderHeader extends React.Component<UserFormProps, State> {
+export class OrderHeader extends React.Component<UserFormProps, UserFormState> {
     public constructor(props: UserFormProps) {
         super(props);
-
+        
         this.state = {
             expand: false
         }
@@ -31,16 +39,17 @@ export class OrderHeader extends React.Component<UserFormProps, State> {
     public handleSearch = (e: any) => {
         e.preventDefault();
 
-        this.props.form.validateFields((err, value) => {
-            console.log(value);
-        })
+        const { form, onSearch } = this.props;
+        form.validateFields((err, value) => {
+            onSearch(value);
+        });
     }
 
     public render() {
         const { expand } = this.state;
         return (
             <section className="page-header__outside">
-                <Form onSubmit={this.handleSearch}>
+                <Form className="page-header__form" onSubmit={this.handleSearch}>
                     <Row gutter={24}>{this.getFields()}</Row>
                     <Row>
                         <Col span={24} style={{textAlign: 'center'}}>
@@ -72,27 +81,35 @@ export class OrderHeader extends React.Component<UserFormProps, State> {
         });
     }
 
-    private getFields = () => {
-        const count = this.state.expand ? 10 : 6;
-        const { getFieldDecorator } = this.props.form;
-        const children = [];
+    private getFields = (): Array<React.ReactNode> => {
+        const { form, field, dataSource = {}, count = 4 } = this.props;
+        const { getFieldDecorator } = form;
+        const _count = this.state.expand ? field.length : count;
+        const children: Array<React.ReactNode> = [];
 
-        for (let i = 0; i < 10; i++) {
+        field.forEach((item: FieldItem, index: number): void => {
+            const { name, CNname, span = 6, isRequired = false, requiredText = '请填写必填项' } = item;
+
             children.push(
-                <Col span={8} key={i} style={{display: i < count ? 'block' : 'none'}} >
-                    <Form.Item>
-                        {getFieldDecorator(`field-${i}`, {
+                <Col span={span} key={index} style={{display: index < _count ? 'block' : 'none'}} >
+                    <Form.Item label={`${CNname}：`}>
+                        {getFieldDecorator(name, {
                             rules: [
                                 {
-                                    required: true,
-                                    message: 'input something!'
+                                    required: isRequired,
+                                    message: requiredText
                                 }
-                            ]
-                        })(<Input placeholder="placeholder" />)}
+                            ],
+                            initialValue: dataSource[name] || ''
+                        })(
+                            item.rightRender ?
+                                item.rightRender(item) :
+                                <span>{dataSource[name]}</span>
+                        )}
                     </Form.Item>
                 </Col>
             )
-        }
+        })
         return children;
     }
 }

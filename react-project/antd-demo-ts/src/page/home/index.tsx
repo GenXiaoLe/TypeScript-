@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Row, Col, Menu, Icon, Table, Divider, Tag, Form } from 'antd';
+import { Layout, Row, Col, Table, Divider, Input, Upload, Button, Icon } from 'antd';
 
 import { buyList, buy } from '../../component/tableTh/home';
 
@@ -9,6 +9,7 @@ import OrderHeader from '../../component/order/header';
 
 import './index.css';
 import { Link } from 'react-router-dom';
+import { spawn } from 'child_process';
 const { Header, Content, Sider } = Layout;
 const { Column, ColumnGroup } = Table;
 
@@ -56,10 +57,54 @@ export default class Home extends React.Component<Props, State>{
     }
 
     public onSearch = (val: any): void => {
-        console.log(val);
+        console.log('search', val);
     }
 
     public render() {
+        let data = [
+            {
+                name: 'companyId',
+                CNname: '供应商',
+                rightRender: (data: any) => <Input placeholder="请填写供应商" />
+            },
+            {
+                name: 'date',
+                CNname: '单据日期',
+                isRequired: true,
+            },
+            {
+                name: 'busUserId',
+                CNname: '业务员',
+                isRequired: true,
+                rightRender: (data: any) => <Input placeholder="请填写业务员" />
+            },
+            {
+                name: 'date2',
+                CNname: '预交日期',
+            },
+            // {
+            //     name: 'attachmentList',
+            //     CNname: '附件',
+            //     rightRender: (data: any) => {
+            //         return <Upload
+            //             name="file"
+            //             action=''>
+            //             <Button>
+            //                 <Icon />
+            //                 上传附件
+            //             </Button>
+            //             支持常见的文件格式, 最大支持15M
+            //         </Upload>
+            //     }
+            // },
+        ]
+
+        let dataSource = {
+            date: '2019-11-01: 14:3',
+            date2: '2019-10-31'
+        }
+
+
         return(
             <section>
                 <Layout>
@@ -68,7 +113,7 @@ export default class Home extends React.Component<Props, State>{
                     </Header>
                     <Content>
                         <Row>
-                            <OrderHeader onSearch={this.onSearch}></OrderHeader>
+                            <OrderHeader onSearch={this.onSearch} field={data} dataSource={dataSource}></OrderHeader>
                         </Row>
 
                         <Table
