@@ -1,16 +1,18 @@
 import React from 'react';
-import { Layout, Row, Col, Table, Divider, Input, Button, Icon } from 'antd';
+import { Layout, Row, Col, Table, Input } from 'antd';
 
 import { buyList, buy } from '../../component/tableTh/home';
 
 import LHeader from '../../component/header/lHeader';
 import OrderHeader from '../../component/order/header';
+import OrderFooter from '../../component/order/footer';
 import Upload from '../../component/upload/uploads'
 
 
 import './index.css';
-const { Header, Content, Sider } = Layout;
-const { Column, ColumnGroup } = Table;
+const { Header, Content } = Layout;
+const { Column } = Table;
+const { TextArea } = Input;
 
 export interface State {
     data: Array<object>
@@ -102,6 +104,31 @@ export default class Home extends React.Component<Props, State>{
             date2: '2019-10-31'
         }
 
+        let data2 = [
+            {
+                name: 'notes',
+                CNname: '备注',
+                span: 24,
+                rightRender: (data: any) => <TextArea placeholder="请填写备注" autosize />
+            },
+            {
+                name: 'createId',
+                CNname: '创建人',
+            },
+            {
+                name: 'date1',
+                CNname: '创建时间',
+            },
+            {
+                name: 'applyId',
+                CNname: '审核人',
+            },
+            {
+                name: 'date2',
+                CNname: '审核时间',
+            },
+        ]
+
 
         return(
             <section>
@@ -111,10 +138,11 @@ export default class Home extends React.Component<Props, State>{
                     </Header>
                     <Content>
                         <Row>
-                            <OrderHeader onSearch={this.onSearch} field={data} dataSource={dataSource}></OrderHeader>
+                            <OrderHeader onSearch={this.onSearch} field={data} dataSource={dataSource} />
                         </Row>
 
                         <Table
+                            style={{background: '#fff'}}
                             dataSource={this.state.tableTh}>
                             {
                                 buyList.map((item) => {
@@ -122,6 +150,9 @@ export default class Home extends React.Component<Props, State>{
                                 })
                             }
                         </Table>
+                        <Row>
+                            <OrderFooter field={data2} dataSource={dataSource} />
+                        </Row>
                     </Content>
                 </Layout>
             </section>
