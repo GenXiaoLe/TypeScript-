@@ -7,6 +7,7 @@ import LHeader from '../../component/header/lHeader';
 import OrderHeader from '../../component/order/header';
 import OrderFooter from '../../component/order/footer';
 import Upload from '../../component/upload/uploads'
+import CompanySelect from '../../component/select/companySelect'
 
 
 import './index.css';
@@ -46,7 +47,7 @@ export default class Home extends React.Component<Props, State>{
                     userName: 'rose',
                     id: 2
                 },
-            ]
+            ],
         };
 
         this.btnChange = this.btnChange.bind(this);
@@ -70,7 +71,7 @@ export default class Home extends React.Component<Props, State>{
             {
                 name: 'companyId',
                 CNname: '供应商',
-                rightRender: (data: any) => <Input placeholder="请填写供应商" />
+                rightRender: (data: any) => <CompanySelect />
             },
             {
                 name: 'date',
