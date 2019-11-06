@@ -12,12 +12,14 @@ interface SelectBasicProps {
     dataSource: Array<any>;
     optionModel: OptionItem;
     data?: any;
-    disabled?: boolean;
+    suffixIcon?: React.ReactNode | undefined;
+    disabled?: boolean | undefined;
     placeholder?: boolean;
+    mode?: 'multiple';
     optionFilterProp?: string | undefined;
     filterOption?: ((inputValue: string, option: React.ReactElement) => boolean) | boolean | undefined;
-    showSearch?: boolean;
-    allowClear?: boolean;
+    showSearch?: boolean | undefined;
+    allowClear?: boolean | undefined;
     loadMore?: (data: Array<any>) => void | undefined;
     onSearch?: (data: string) => void | undefined;
 }
@@ -43,7 +45,7 @@ export default class SelectBasic extends React.Component<SelectBasicProps, Selec
 
         dataSource.forEach((item: any, index: number) => {
             children.push(
-                <Option key={Math.random()} value={item[optionModel.name]}>{item[optionModel.CNname]}</Option>
+                <Option key={index} value={item[optionModel.name]}>{item[optionModel.CNname]}</Option>
             )
         })
 
@@ -51,20 +53,34 @@ export default class SelectBasic extends React.Component<SelectBasicProps, Selec
     }
 
     public render() {
-        const { data = {}, onSearch = undefined, showSearch = false, allowClear = false, optionModel, disabled = false, placeholder = '请选择', optionFilterProp = 'children', filterOption = true } = this.props;
+        const { 
+            data = {}, 
+            optionModel, 
+            placeholder = '请选择', 
+            optionFilterProp = 'children', 
+            suffixIcon,
+            disabled,
+            onSearch,
+            filterOption,
+            allowClear,
+            showSearch,
+            mode
+        } = this.props;
 
         return (
             <section>
                 <Select
                     defaultValue={data[optionModel.name]}
-                    showSearch={showSearch}
-                    disabled={disabled} 
                     placeholder={placeholder}
                     optionFilterProp={optionFilterProp}
+                    onPopupScroll={this.selectOnScroll}
+                    suffixIcon={suffixIcon}
+                    disabled={disabled}
+                    onSearch={onSearch}
                     filterOption={filterOption}
                     allowClear={allowClear}
-                    onPopupScroll={this.selectOnScroll}
-                    onSearch={onSearch}>
+                    showSearch={showSearch}
+                    mode={mode}>
                     {this.createOption()}
                 </Select>
             </section>
