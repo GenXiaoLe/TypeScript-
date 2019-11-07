@@ -1,7 +1,12 @@
 import * as React from 'react';
-import { Row, Col, Form, Button, Icon, Card } from 'antd';
+import { Row, Col, Form } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 
+// FieldItem参数
+/**
+ * @name {string} 属性名
+ * @CNname {string} 属性中文名
+ **/
 interface FieldItem {
     name: string;
     CNname: string;
@@ -18,11 +23,7 @@ interface FieldsProps {
     dataSource?: any
 }
 
-interface FieldsState {
-
-}
-
-export default class Fields extends React.Component<FieldsProps, FieldsState> {
+export default class Fields extends React.Component<FieldsProps> {
     public constructor(props: FieldsProps) {
         super(props);
 

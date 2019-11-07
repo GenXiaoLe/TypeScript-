@@ -7,10 +7,13 @@ import Field from './index';
 
 import './index.scss';
 
-// FieldItem参数
 /**
- * @name {string} 属性名
- * @CNname {string} 属性中文名
+ * - 可传入props值
+ * @onSearch {Function} 点击筛选按钮返回值
+ * @field {Array} 需要渲染的item
+ * @count {Number} 未展开状态下显示多少
+ * @dataSource {any} 需要默认填入的数据源
+ * @hasBtn {boolean} 是否要显示按钮
  **/
 interface UserFormProps extends FormComponentProps {
     onSearch: (val: any) => void;

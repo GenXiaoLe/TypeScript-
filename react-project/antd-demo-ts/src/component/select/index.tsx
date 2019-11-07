@@ -22,6 +22,7 @@ interface SelectBasicProps {
     allowClear?: boolean | undefined;
     loadMore?: (data: Array<any>) => void | undefined;
     onSearch?: (data: string) => void | undefined;
+    onChange?: (value: string, option: any) => void | undefined;
 }
 
 interface SelectBasicState {
@@ -61,6 +62,7 @@ export default class SelectBasic extends React.Component<SelectBasicProps, Selec
             suffixIcon,
             disabled,
             onSearch,
+            onChange,
             filterOption,
             allowClear,
             showSearch,
@@ -77,6 +79,7 @@ export default class SelectBasic extends React.Component<SelectBasicProps, Selec
                     suffixIcon={suffixIcon}
                     disabled={disabled}
                     onSearch={onSearch}
+                    onChange={onChange}
                     filterOption={filterOption}
                     allowClear={allowClear}
                     showSearch={showSearch}

@@ -13,6 +13,7 @@ interface SearchSelectProps {
     filterOption?: ((inputValue: string, option: React.ReactElement) => boolean) | boolean;
     loadMore?: (data: Array<any>) => void;
     onSearch?: (data: string) => void | undefined;
+    onChange?: (value: string, option: React.ReactElement) => void | undefined;
 }
 
 export default class SearchSelect extends React.Component<SearchSelectProps> {

@@ -66,6 +66,10 @@ export default class Home extends React.Component<Props, State>{
         console.log('search', val);
     }
 
+    public onChange = (val: string, option: React.ReactElement): void => {
+        console.log(val);
+    }
+
     public render() {
         let data = [
             {

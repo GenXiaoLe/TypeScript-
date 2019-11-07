@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
 import './index.css';
 
@@ -81,21 +81,6 @@ export default class FirstPage extends React.Component<Props, State> {
                                 {
                                     sortList.map((item, index) => {
                                         return <TabPane tab={item.name} key={index.toString()}>
-                                            {/* {
-                                                item.data.map(v => {
-                                                    return <Row key={v.id}>
-                                                        <Col span={2}>
-                                                            {v.id + 1}
-                                                        </Col>
-                                                        <Col span={12}>
-                                                            {v.name}
-                                                        </Col>
-                                                        <Col span={10}>
-                                                            {v.money}
-                                                        </Col>
-                                                    </Row>
-                                                })
-                                            } */}
                                             <Row>
                                                 <Col span={2}>
                                                     1
@@ -118,13 +103,7 @@ export default class FirstPage extends React.Component<Props, State> {
                         <Layout className="first-page__block">
                             <Header className="first-page__header">常用功能</Header>
                             <Content>
-                                <ul className="first-page">
-                                    {
-                                        this.state.business.map((item, index) => {
-                                            return <li key={index}><Icon type={item.icon} />{item.name}</li>
-                                        })
-                                    }
-                                </ul>
+                                
                             </Content>
                         </Layout>
                     </Col>

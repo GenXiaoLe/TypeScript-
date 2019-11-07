@@ -8,6 +8,7 @@ interface CompanySelectProps {
     disabled?: boolean;
     placeholder?: boolean;
     mode?: 'multiple';
+    onChange?: (value: string, option: React.ReactElement) => void | undefined;
 }
 
 interface CompanySelectState {

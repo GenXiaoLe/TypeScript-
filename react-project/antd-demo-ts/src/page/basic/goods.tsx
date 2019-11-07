@@ -108,7 +108,6 @@ export default class Goods extends React.Component<Props, State> {
                                         {id: 6, title: '货品1-1', parent_id: 2},
                                         {id: 7, title: '货品1-1-1', parent_id: 6},
                                         {id: 8, title: '货品1-2', parent_id: 2},
-
                                     ]}/>
                             </Col>
                             <Col span={20} className="goods-table">
