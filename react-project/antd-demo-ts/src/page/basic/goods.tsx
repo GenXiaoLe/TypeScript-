@@ -1,26 +1,18 @@
 import React from 'react';
-import { Layout, Row, Col, Menu, Icon, Table, Divider, Tag } from 'antd';
+import { Layout, Row, Col, Menu, Icon, Table, Divider, Tag, Button } from 'antd';
 
 import { goods } from '../../component/tableTh/base';
 
 import LHeader from '../../component/header/lHeader/index';
 import THeader from '../../component/header/tHeader/index';
 import Tree from '../../component/tree/searchTree';
+import SearchDialog from '../../component/dialog/searchDialog';
 
 import './index.css';
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
 const { Column, ColumnGroup } = Table;
 
-// export namespace Goods {
-//     export interface Props {
-
-//     }
-
-//     export interface State {
-//         data: Array<object>
-//     }
-// }
 
 export interface Props {
 
@@ -29,6 +21,7 @@ export interface Props {
 export interface State {
     data: Array<object>
     tableTh: Array<object>
+    visibility: boolean
 }
 
 const rowSelection: object = {
@@ -42,7 +35,7 @@ const rowSelection: object = {
 }
 
 export default class Goods extends React.Component<Props, State> {
-    constructor(props: Props) {
+    public constructor(props: Props) {
         super(props);
 
         this.state = {
@@ -60,15 +53,17 @@ export default class Goods extends React.Component<Props, State> {
                     goodName: 'rose',
                     unit: 'kg'
                 }
-            ]
+            ],
+            visibility: false
         }
 
         this.btnChange = this.btnChange.bind(this);
         this.save = this.save.bind(this);
         this.cancal = this.cancal.bind(this);
+        this.search = this.search.bind(this);
     }
 
-    btnChange = (name: string) => {
+    public btnChange = (name: string) => {
         console.log(name);
         switch(name) {
             case '保存':
@@ -80,20 +75,41 @@ export default class Goods extends React.Component<Props, State> {
         }
     }
 
-    save = (data: Array<object>) => {
+    public save = (data: Array<object>) => {
 
     }
 
-    cancal = () => {
+    public cancal = () => {
 
     }
 
-    render() {
+    public onChange = (data: any):void => {
+
+    }
+
+    public btnOnChange = (data: string):void => {
+
+    }
+
+    public search = () => {
+        this.setState({
+            visibility: !this.state.visibility
+        })
+    }
+
+    public render() {
         return(
             <section>
                 <Layout>
                     <Header className="goods__header">
-                        <LHeader btnChange={this.btnChange} btns={['导出', '导入']} />
+                        <LHeader 
+                            leftLayout={[
+                                <Button key="1" shape="round" className="l-header__btn-defalut" onClick={this.btnOnChange.bind(this, '保存')}>保存</Button>,
+                                <Button key="2" shape="round" className="l-header__btn-defalut" onClick={this.btnOnChange.bind(this, '取消')}>取消</Button>
+                            ]}
+                            rightLayout={[
+                                <Button type="primary" title="搜索" onClick={this.search}>搜索</Button> 
+                            ]}/>
                     </Header>
                     <Content>
                         <Row>
@@ -125,6 +141,7 @@ export default class Goods extends React.Component<Props, State> {
                         </Row>
                     </Content>
                 </Layout>
+                <SearchDialog visibility={this.state.visibility} onChange={this.onChange} />
             </section>
         );
     }

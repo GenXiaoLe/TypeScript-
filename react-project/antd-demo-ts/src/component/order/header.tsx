@@ -16,6 +16,7 @@ import './index.scss';
  * @hasBtn {boolean} 是否要显示按钮
  **/
 interface UserFormProps extends FormComponentProps {
+    /** 点击确定后的回调函数 */
     onSearch: (val: any) => void;
     field: Array<any>;
     form: WrappedFormUtils;

@@ -1,37 +1,31 @@
 import * as React from 'react';
-import { Button } from 'antd';
+import { Button, Row, Col } from 'antd';
 
 import './index.css';
 
-// export namespace LHeader {
-//     export interface Props {
-//         btns?: Array<string>;
-//         btnChange: (btnName: string) => void
-//     }
-// }
-
-export interface Props {
-    btns?: Array<string>;
-    btnChange: (btnName: string) => void
+export interface LHeaderProps {
+    leftLayout?: Array<React.ReactElement>;
+    rightLayout?: Array<React.ReactElement>;
 }
 
-export default class LHeader extends React.Component<Props>{
-    constructor(props: Props) {
+export default class LHeader extends React.Component<LHeaderProps>{
+    constructor(props: LHeaderProps) {
         super(props);
-
-        this.state = {
-            btns: this.props.btns
-        };
     }
 
     render() {
-        const { btns, btnChange } = this.props;
+        const { leftLayout = [], rightLayout = [] } = this.props;
 
         return(
             <section className="l-header__box">
-                <Button shape="round" className="l-header__btn-defalut" onClick={btnChange.bind(this, '保存')}>保存</Button>
-                <Button shape="round" className="l-header__btn-defalut" onClick={btnChange.bind(this, '取消')}>取消</Button>
-                {(btns || []).map((item, index) => (<Button key={index} shape="round" className="l-header__btn-defalut" onClick={btnChange.bind(this, item)}>{item}</Button>))}
+                <Row type="flex" justify="space-between" gutter={24}>
+                    <Col>
+                        {leftLayout}
+                    </Col>
+                    <Col>
+                        {rightLayout}
+                    </Col>
+                </Row>
             </section>
         )
     }

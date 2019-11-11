@@ -2,11 +2,6 @@ import * as React from 'react';
 import { Row, Col, Form } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 
-// FieldItem参数
-/**
- * @name {string} 属性名
- * @CNname {string} 属性中文名
- **/
 interface FieldItem {
     name: string;
     CNname: string;

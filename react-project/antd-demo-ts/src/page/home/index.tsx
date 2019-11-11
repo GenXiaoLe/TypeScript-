@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Row, Col, Table, Input } from 'antd';
+import { Layout, Row, Col, Table, Input, Button } from 'antd';
 
 import { buyList, buy } from '../../component/tableTh/home';
 
@@ -68,6 +68,10 @@ export default class Home extends React.Component<Props, State>{
 
     public onChange = (val: string, option: React.ReactElement): void => {
         console.log(val);
+    }
+
+    public btnOnChange = (btn: string):void => {
+        console.log(btn);
     }
 
     public render() {
@@ -139,7 +143,11 @@ export default class Home extends React.Component<Props, State>{
             <section>
                 <Layout>
                     <Header className="t-header">
-                        <LHeader btnChange={this.btnChange} btns={['导出', '导入']} />
+                        <LHeader
+                        leftLayout={[
+                            <Button key="1" shape="round" className="l-header__btn-defalut" onClick={this.btnOnChange.bind(this, '保存')}>保存</Button>,
+                            <Button key="2" shape="round" className="l-header__btn-defalut" onClick={this.btnOnChange.bind(this, '取消')}>取消</Button>
+                        ]}/>
                     </Header>
                     <Content>
                         <Row>
