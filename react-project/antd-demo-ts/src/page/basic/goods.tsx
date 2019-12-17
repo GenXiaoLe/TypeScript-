@@ -114,7 +114,7 @@ export default class Goods extends React.Component<Props, State> {
                     <Content>
                         <Row>
                             <Col span={4} className="goods-sider">
-                                <Tree 
+                                {/* <Tree 
                                     data={[
                                         {id: 1, title: '有下级的货品', parent_id: 0},
                                         {id: 2, title: '货品1', parent_id: 1},
@@ -124,7 +124,7 @@ export default class Goods extends React.Component<Props, State> {
                                         {id: 6, title: '货品1-1', parent_id: 2},
                                         {id: 7, title: '货品1-1-1', parent_id: 6},
                                         {id: 8, title: '货品1-2', parent_id: 2},
-                                    ]}/>
+                                    ]}/> */}
                             </Col>
                             <Col span={20} className="goods-table">
                                 <THeader btnChange={this.btnChange} />
