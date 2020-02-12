@@ -1,13 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
-import { Layout, Row, Col, Menu } from 'antd';
+import { Layout, Row, Col } from 'antd';
 import './App.css';
 import Tree from './component/tree/menuTree';
 import Nav from './component/nav';
 import RouteMain from './routers/main';
 
-const { SubMenu } = Menu;
-const { Sider, Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 class App extends React.Component {
   render() {
@@ -26,7 +25,7 @@ class App extends React.Component {
                   {id: 3, name: 'nav1-1', parent_id: 1},
                   {id: 4, name: 'goods', parent_id: 1, link: '/layout/goods'},
                   {id: 5, name: 'payment', parent_id: 1, link: '/layout/payment'},
-                  {id: 6, name: 'nav2-1', parent_id: 2},
+                  {id: 6, name: 'count', parent_id: 2, link: '/layout/count'},
                   {id: 7, name: 'nav2-2', parent_id: 2},
                 ]} />
               </Content>
