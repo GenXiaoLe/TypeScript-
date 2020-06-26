@@ -24,13 +24,13 @@
       2. 新建ts配置文件
 
          ```bash
-         tsc init
+         tsc --init
          ```
 
       3. 新建package.json
 
          ```bash
-         npm init
+         npm init -y
          ```
 
       4. 编译ts为js
@@ -55,4 +55,4 @@
 
       2. 编写webpack.config.js 配置文件 以及创建模板文件html
 
-    5. 具体项目见ts+webpack
+    5. 具体项目见ts_webpack
