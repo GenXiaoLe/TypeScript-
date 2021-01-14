@@ -38,9 +38,9 @@ class App extends React.Component {
                   <Col span={8}>
                     <span>JXC企业</span>
                   </Col>
-                  <Col span={8} offset={8}>
+                  {/* <Col span={8} offset={8}>
                     <span>设置中心</span>
-                  </Col>
+                  </Col> */}
                 </Row>
                 <Row className="content__header-nav">
                   <Nav />
